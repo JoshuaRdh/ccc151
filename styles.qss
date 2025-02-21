@@ -1,0 +1,210 @@
+* {
+    color: white;
+}
+
+#studentsBtn {
+    border: none;
+    background-color: #2a5ea1;
+}
+
+#programsBtn {
+    border: none;
+    background-color: #8576ff;
+    font-weight: bold;
+}
+
+#collegesBtn {
+    border: none;
+    background-color: #29c9f1;
+    font-weight: bold;
+}
+
+#studentPressed {
+    border: none;
+    font-weight: bold;
+    background: qlineargradient(
+        spread: pad,
+        x1: 0,
+        y1: 0,
+        x2: 1,
+        y2: 0,
+        stop: 0 #2a5ea1,
+        stop: 0.95 #2a5ea1,
+        stop: 1 #205295
+    );
+}
+
+#programPressed {
+    border: none;
+    font-weight: bold;
+    background: qlineargradient(
+        spread: pad,
+        x1: 0,
+        y1: 0,
+        x2: 1,
+        y2: 0,
+        stop: 0 #6153c7,
+        stop: 0.04 #8576ff stop: 0.96 #8576ff stop: 1 #6d5ee0
+    );
+}
+
+#collegePressed {
+    border: none;
+    font-weight: bold;
+    background: qlineargradient(
+        spread: pad,
+        x1: 1,
+        y1: 0,
+        x2: 0,
+        y2: 0,
+        stop: 0 #29c9f1,
+        stop: 0.96 #29c9f1 stop: 1 #176d83
+    );
+}
+
+/* Header Styles  ----------------------------- */
+
+#studentsHeader {
+    background-color: #144272;
+}
+
+#programsHeader {
+    background-color: #413694;
+}
+
+#collegesHeader {
+    background-color: #1e8fac;
+}
+
+#headerLabel {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+#headerAddBtn {
+    margin-left: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: transparent;
+    border: none;
+}
+
+/* studentQueryBar -----------------------------*/
+
+#studentQueryBar {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0,
+        stop: 0 #2a5ea1,
+        stop: 0.85 #2a5ea1,
+        stop: 1 #143663
+    );
+}
+
+#studentQueryBar QPushButton,
+#studentQueryBar QComboBox {
+    background-color: #2a5ea1;
+}
+
+#studentQueryBar > QLineEdit {
+    background-color: #75a0d7;
+}
+
+#studentQueryBar > QLabel {
+    background: transparent;
+}
+
+/* program QueryBar ----------------------------- */
+#programQueryBar {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0,
+        stop: 0 #8576ff,
+        stop: 0.85 #8576ff,
+        stop: 1 #5247a5
+    );
+}
+
+#programQueryBar QPushButton,
+#programQueryBar QComboBox {
+    background-color: #6b5fcc;
+}
+
+#programQueryBar > QLineEdit {
+    background-color: #6b5fcc;
+}
+
+#programQueryBar > QLabel {
+    background: transparent;
+}
+
+/* college QueryBar ----------------------------- */
+
+#collegeQueryBar {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0,
+        y1: 1,
+        x2: 0,
+        y2: 0,
+        stop: 0 #29c9f1,
+        stop: 0.85 #29c9f1,
+        stop: 1 #176d83
+    );
+}
+
+#collegeQueryBar QPushButton,
+#collegeQueryBar QComboBox {
+    background-color: #24a8c9;
+}
+
+#collegeQueryBar > QLineEdit {
+    background-color: #24a8c9;
+}
+
+#collegeQueryBar > QLabel {
+    background: transparent;
+}
+
+/* list */
+
+#listFrame {
+    padding: 12px;
+    background-color: white;
+}
+#listFrame > * {
+    background-color: white;
+}
+
+#listFrame > QWidget,
+#listFrame > QPushButton {
+    padding: 0px;
+    color: #144272;
+}
+
+#detailFrame {
+    padding-top: 4.5px;
+    padding-bottom: 4.5px;
+    border-bottom: 0.5px solid #1c172b;
+}
+
+#form {
+    background-color: black;
+    color: white;
+}
+#form > QLineEdit, #form >  QComboBox, #form > QPushButton{
+    color: black;
+}
+
+.test {
+    color: #6153c7;
+    background-color: #205295;
+    color: #2099b8;
+    color: #144272;
+}

@@ -26,7 +26,7 @@ class dataPanel(QWidget) :
         self.myForm = Form(self, self.myList, data, dependencyPanel, dependencyPanel2)
 
         self.addBtn = QPushButton()
-        self.addBtn.setIcon(QIcon("addCircle.svg"))
+        self.addBtn.setIcon(QIcon("assets/addCircle.svg"))
         self.addBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.addBtn.setIconSize(QSize(32,32))
         self.addBtn.setFixedHeight(32)

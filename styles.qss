@@ -1,27 +1,28 @@
-* {
-    color: white;
-}
-
 #studentsBtn {
     border: none;
     background-color: #2a5ea1;
+    font-weight: bold;
+    color: white;
 }
 
 #programsBtn {
     border: none;
-    background-color: #8576ff;
+    background-color: #f25f5c;
     font-weight: bold;
+    color: white;
 }
 
 #collegesBtn {
     border: none;
-    background-color: #29c9f1;
+    background-color: #70c1b3;
     font-weight: bold;
+    color: white;
 }
 
 #studentPressed {
     border: none;
     font-weight: bold;
+    color: white;
     background: qlineargradient(
         spread: pad,
         x1: 0,
@@ -37,28 +38,30 @@
 #programPressed {
     border: none;
     font-weight: bold;
+    color: white;
     background: qlineargradient(
         spread: pad,
         x1: 0,
         y1: 0,
         x2: 1,
         y2: 0,
-        stop: 0 #6153c7,
-        stop: 0.04 #8576ff stop: 0.96 #8576ff stop: 1 #6d5ee0
+        stop: 0 #c44e4c,
+        stop: 0.04 #f25f5c stop: 0.96 #f25f5c stop: 1 #c44e4c
     );
 }
 
 #collegePressed {
     border: none;
     font-weight: bold;
+    color: white;
     background: qlineargradient(
         spread: pad,
         x1: 1,
         y1: 0,
         x2: 0,
         y2: 0,
-        stop: 0 #29c9f1,
-        stop: 0.96 #29c9f1 stop: 1 #176d83
+        stop: 0 #70c1b3,
+        stop: 0.98 #70c1b3 stop: 1 #5ea398
     );
 }
 
@@ -69,16 +72,17 @@
 }
 
 #programsHeader {
-    background-color: #413694;
+    background-color: #c44e4c;
 }
 
 #collegesHeader {
-    background-color: #1e8fac;
+    background-color: #5ea398;
 }
 
 #headerLabel {
     font-weight: bold;
     font-size: 32px;
+    color: white;
 }
 
 #headerAddBtn {
@@ -89,117 +93,250 @@
     border: none;
 }
 
-/* studentQueryBar -----------------------------*/
+/* studentQueryBar and Details comboBox-----------------------------*/
 
 #studentQueryBar {
+    padding-left: 10px;
+    padding-right: 10px;
     background: qlineargradient(
         spread: pad,
         x1: 0,
         y1: 1,
         x2: 0,
         y2: 0,
-        stop: 0 #2a5ea1,
-        stop: 0.85 #2a5ea1,
-        stop: 1 #143663
+        stop: 0 white,
+        stop: 0.92 white,
+        stop: 1 #0e2747
     );
 }
 
-#studentQueryBar QPushButton,
-#studentQueryBar QComboBox {
-    background-color: #2a5ea1;
+#studentQueryBar QPushButton {
+    background-color: white;
+    color: #144272;
 }
 
 #studentQueryBar > QLineEdit {
-    background-color: #75a0d7;
+    padding-left: 5px;
+    background-color: white;
+    color: #144272;
+    border: 1px solid #144272;
+    border-radius: 8px;
 }
 
 #studentQueryBar > QLabel {
     background: transparent;
+    color: #144272;
+}
+/* comboBox */
+#studentQueryBar QComboBox,
+#studentDetailsEdit QComboBox {
+    background-color: white;
+    color: #144272;
+    border: 1px solid #144272;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    selection-background-color: #144272;
+    selection-color: white;
+}
+#studentQueryBar QComboBox::drop-down,
+#studentDetailsEdit QComboBox::drop-down {
+    width: 16px;
+    height: 20px;
+    border-left: 1px solid #144272;
+}
+#studentQueryBar QComboBox::down-arrow,
+#studentDetailsEdit QComboBox::down-arrow {
+    image: url(assets/arrowDropDown.svg);
+    width: 20px;
+    height: 20px;
+}
+
+#studentQueryBar QComboBox QListView,
+#studentDetailsEdit QComboBox QListView {
+    background-color: white;
 }
 
 /* program QueryBar ----------------------------- */
 #programQueryBar {
+    padding-left: 10px;
+    padding-right: 10px;
     background: qlineargradient(
         spread: pad,
         x1: 0,
         y1: 1,
         x2: 0,
         y2: 0,
-        stop: 0 #8576ff,
-        stop: 0.85 #8576ff,
-        stop: 1 #5247a5
+        stop: 0 white,
+        stop: 0.92 white,
+        stop: 1 #a1413f
     );
 }
 
 #programQueryBar QPushButton,
 #programQueryBar QComboBox {
-    background-color: #6b5fcc;
+    background-color: white;
+    color: #a1413f;
 }
 
 #programQueryBar > QLineEdit {
-    background-color: #6b5fcc;
+    padding-left: 5px;
+    background-color: white;
+    color: #a1413f;
+    border: 1px solid #a1413f;
+    border-radius: 8px;
 }
 
 #programQueryBar > QLabel {
     background: transparent;
+    color: #a1413f;
+}
+/* comboBox */
+#programQueryBar QComboBox,
+#programDetailsEdit QComboBox {
+    background-color: white;
+    color: #a1413f;
+    border: 1px solid #a1413f;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    selection-background-color: #a1413f;
+    selection-color: white;
+}
+#programQueryBar QComboBox::drop-down,
+#programDetailsEdit QComboBox::drop-down {
+    width: 16px;
+    height: 20px;
+    border-left: 1px solid #a1413f;
+}
+#programQueryBar QComboBox::down-arrow,
+#programDetailsEdit QComboBox::down-arrow {
+    image: url(assets/arrowDropDown.svg);
+    width: 20px;
+    height: 20px;
+}
+
+#programQueryBar QComboBox QListView,
+#programDetailsEdit QComboBox QListView {
+    background-color: white;
 }
 
 /* college QueryBar ----------------------------- */
 
 #collegeQueryBar {
+    padding-left: 10px;
+    padding-right: 10px;
     background: qlineargradient(
         spread: pad,
         x1: 0,
         y1: 1,
         x2: 0,
         y2: 0,
-        stop: 0 #29c9f1,
-        stop: 0.85 #29c9f1,
-        stop: 1 #176d83
+        stop: 0 white,
+        stop: 0.92 white,
+        stop: 1 #477a72
     );
 }
 
 #collegeQueryBar QPushButton,
 #collegeQueryBar QComboBox {
-    background-color: #24a8c9;
+    background-color: white;
+    color: #477a72;
 }
 
 #collegeQueryBar > QLineEdit {
-    background-color: #24a8c9;
+    padding-left: 5px;
+    background-color: white;
+    color: #477a72;
+    border: 1px solid #477a72;
+    border-radius: 8px;
 }
 
 #collegeQueryBar > QLabel {
     background: transparent;
+    color: #477a72;
+}
+/* comboBox */
+#collegeQueryBar QComboBox,
+#collegeDetailsEdit QComboBox {
+    background-color: white;
+    color: #477a72;
+    border: 1px solid #477a72;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    selection-background-color: #477a72;
+    selection-color: white;
+}
+#collegeQueryBar QComboBox::drop-down,
+#collegeDetailsEdit QComboBox::drop-down {
+    width: 16px;
+    height: 20px;
+    border-left: 1px solid #477a72;
+}
+#collegeQueryBar QComboBox::down-arrow,
+#collegeDetailsEdit QComboBox::down-arrow {
+    image: url(assets/arrowDropDown.svg);
+    width: 20px;
+    height: 20px;
 }
 
-/* list */
-
-#listFrame {
-    padding: 12px;
+#collegeQueryBar QComboBox QListView,
+#collegeDetailsEdit QComboBox QListView {
     background-color: white;
 }
-#listFrame > * {
+
+/* form dialog ------ */
+#formDialog {
+    background-color: #86c589;
+}
+#formDialog QPushButton {
     background-color: white;
+    color: #4e7450;
+    border: 1px solid #4e7450;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
 }
-
-#listFrame > QWidget,
-#listFrame > QPushButton {
-    padding: 0px;
-    color: #144272;
-}
-
-#detailFrame {
-    padding-top: 4.5px;
-    padding-bottom: 4.5px;
-    border-bottom: 0.5px solid #1c172b;
-}
-
-#form {
-    background-color: black;
+#formDialog QPushButton:hover {
+    background-color: #4e7450;
     color: white;
+    border: 1px solid #4e7450;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
 }
-#form > QLineEdit, #form >  QComboBox, #form > QPushButton{
-    color: black;
+#formDialog * {
+    background-color: white;
+    color: #4e7450;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+#formDialog QComboBox {
+    background-color: white;
+    color: #4e7450;
+    border: 1px solid #86c589;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    selection-background-color: #86c589;
+    selection-color: white;
+}
+#formDialog QComboBox::drop-down {
+    width: 16px;
+    height: 20px;
+    border-left: 1px solid #86c589;
+}
+#formDialog QComboBox::down-arrow {
+    image: url(assets/arrowDropDown.svg);
+    width: 20px;
+    height: 20px;
+}
+
+#formDialog QComboBox QListView {
+    background-color: white;
 }
 
 .test {

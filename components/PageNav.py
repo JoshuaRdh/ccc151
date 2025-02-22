@@ -9,8 +9,16 @@ from PyQt6.QtCore import Qt
 import math
 
 class PageNav(QFrame) :
-    def __init__(self, currentLastPage, renderPage) :
+    def __init__(self, currentLastPage, renderPage, data) :
         super().__init__()
+        self.data = data
+        if (self.data == "students") :
+            self.textColor = "#144272"
+        elif (self.data == "programs") :
+            self.textColor = "#a1413f"
+        elif (self.data == "colleges") :
+            self.textColor = "#477a72"
+
         self.renderPage = renderPage
         self.currentPage = 1
         self.currentLastPage = currentLastPage
@@ -44,7 +52,27 @@ class PageNav(QFrame) :
         self.lineNav.returnPressed.connect(lambda: self.handleNavClicked('line'))
         self.lineNav.setValidator(QIntValidator(0, 99999))
         self.leftNav.hide()
-
+        buttonStyles = f"""
+        QPushButton {{
+            background-color: white;
+            color: {self.textColor};
+            border: 1px solid {self.textColor};
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 5px;
+        }}
+        QPushButton:hover {{
+            background-color: {self.textColor};
+            color: white;
+            border: 1px solid {self.textColor};
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 5px;
+        
+        }}
+        """
+        self.leftNav.setStyleSheet(buttonStyles)
+        self.rightNav.setStyleSheet(buttonStyles)
         self.lineNav.setStyleSheet("border: none;border-bottom: 0.5px solid #144272;")
         self.lineNav.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.lineNav.setFixedWidth(50)

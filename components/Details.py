@@ -42,10 +42,13 @@ class Details(QFrame):
 
         if (self.data == "students") :
             self.highlightColor = "#2a5ea1"
+            self.textColor = "#144272"
         elif (self.data == "programs") :
-            self.highlightColor = "#8576ff"
+            self.highlightColor = "#c44e4c"
+            self.textColor = "#a1413f"
         elif (self.data == "colleges") :
-            self.highlightColor = "#29c9f1"
+            self.highlightColor = "#5ea398"
+            self.textColor = "#477a72"
             
         self.frameStyles = """
             QFrame{
@@ -126,18 +129,23 @@ class Details(QFrame):
 
         if (self.data == 'students') :
             initDetails.studentUI_init(self)
+            self.optionBtn = QPushButton()
+            self.optionBtn.setIcon(QIcon("assets/optionDots_student.svg"))
         elif (self.data == 'programs') :
             initDetails.programUI_init(self)
+            self.optionBtn = QPushButton()
+            self.optionBtn.setIcon(QIcon("assets/optionDots_program.svg"))
         elif (self.data == 'colleges') :
             initDetails.collegeUI_init(self)
+            self.optionBtn = QPushButton()
+            self.optionBtn.setIcon(QIcon("assets/optionDots_college.svg"))
         else :
             initDetails.headerUI_init(self)
 
         if self.data != 'header' :
             self.myOptionMenu = QMenu(self)
             self.myOptionMenu.setStyleSheet(f"background-color:{self.highlightColor}; color: white")
-            self.optionBtn = QPushButton()
-            self.optionBtn.setIcon(QIcon("optionDots.svg"))
+
             self.optionBtn.setStyleSheet("max-width: 50px; max-height: 20px; border:none;margin-right: 8px;border-radius:10px;")
             self.optionBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
@@ -172,15 +180,35 @@ class Details(QFrame):
 
         self.saveBtn = QPushButton('save')
         self.saveBtn.clicked.connect(self.handleSave)
-        self.saveBtn.setFixedHeight(height)
+        self.saveBtn.setMaximumHeight(height)
         self.layout.addWidget(self.saveBtn)
         self.cancelBtn = QPushButton('cancel')
         self.cancelBtn.clicked.connect(self.handleCancel)
-        self.cancelBtn.setFixedHeight(height)
+        self.cancelBtn.setMaximumHeight(height)
         self.layout.addWidget(self.cancelBtn)
-        self.cancelBtn.setStyleSheet("margin-right: 8px")
-
-
+        self.saveBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.cancelBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        buttonStyles = f"""
+        QPushButton {{
+            background-color: white;
+            color: {self.textColor};
+            border: 1px solid {self.textColor};
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 5px;
+        }}
+        QPushButton:hover {{
+            background-color: {self.textColor};
+            color: white;
+            border: 1px solid {self.textColor};
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 5px;
+        
+        }}
+        """
+        self.saveBtn.setStyleSheet(buttonStyles)
+        self.cancelBtn.setStyleSheet(buttonStyles)
     
     def handleSave(self) : #reused from Forms handleAdd
         print(f"handle{self.data}Clicked")
@@ -244,9 +272,21 @@ class Details(QFrame):
 
     def hanDel(self) :
         msgbox = QMessageBox(self)
-        msgbox.setStyleSheet("background-color:none; color: white")
+        msgbox.setStyleSheet("""
+                            QMessageBox {
+                                background-color: #a1413f;
+                             }
+                             QMessageBox * {
+                                background-color: white;
+                                color:  #a1413f;
+                                border: none;
+                                padding: 3px;
+                                border-radius: 5px;
+                             }
+                            """)
         msgbox.setWindowTitle("confirm deletion")
         msgbox.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        deleteYes = False
         for button in msgbox.findChildren(QPushButton):
             button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         if (self.data == 'students') :
@@ -255,6 +295,7 @@ class Details(QFrame):
             if response == QMessageBox.StandardButton.Yes :
                 delStudent(self.obj['id_no'])
                 self.rerender()
+                deleteYes = True
         elif (self.data == 'programs') :
             programWithCollegeCnt = getOptions.getStudentsOfProgramsCount(self.obj['code'])
             msgbox.setText(f"Are you sure you want to delete program {self.obj['code']}? it currently has {programWithCollegeCnt} students, deleting the program will leave them with no program.")
@@ -265,6 +306,7 @@ class Details(QFrame):
                 update_formComboBox(self.data, self.form_comboBox)
                 update_filterComboBox(self.data, self.filter_comboBox)                
                 self.dependencyPanel.myList.refactor_rerender()
+                deleteYes = True
             # sync with student data
         elif (self.data == 'colleges') :
             programWithCollegeCnt = getOptions.getProgramsOfCollegesCount(self.obj['code'])
@@ -277,7 +319,9 @@ class Details(QFrame):
                 update_filterComboBox(self.data, self.filter_comboBox, 1)                
                 update_filterComboBox(self.data, self.filter_comboBox2, 2)   
                 self.dependencyPanel.myList.refactor_rerender()
-        self.parent().parent().parent().parent().parent().parent().animationSeq("delete")
+                deleteYes = True
+        if deleteYes :
+            self.parent().parent().parent().parent().parent().parent().animationSeq("delete")
 
             # sync with program data
 

@@ -8,11 +8,11 @@ from datetime import datetime
 def formValidated(data, myObj, self, obj) :
     msgbox = QMessageBox(self)
     msgbox.setIcon(QMessageBox.Icon.Critical)
-    msgbox.setStyleSheet("background-color: black; color: white")
+    msgbox.setStyleSheet("background-color: #a1413f; color: white")
     if (data == 'students') :
         if obj is None: obj = {'id_no' : '0'}
         idnoRegex = r'^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
-        year = int(myObj['id_no'][0:4])
+        year = myObj['id_no'][0:4]
         current_year = int(datetime.now().year)
 
         if not myObj['id_no'] or not myObj['first_name'] or not myObj['last_name'] :
@@ -25,7 +25,7 @@ def formValidated(data, myObj, self, obj) :
             msgbox.setText("id number should follow format, e.g 2019-0001")
             msgbox.exec()
             return False
-        elif year < 1968 or year > current_year :
+        elif int(year) < 1968 or int(year) > current_year :
             msgbox.setWindowTitle("invalid year")
             msgbox.setText("id number should be a valid year")
             msgbox.exec()

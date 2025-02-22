@@ -36,8 +36,6 @@ class QueryBar(QWidget) :
         self.searchBar.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.searchBar.returnPressed.connect(self.refactor_handleSearch)
         self.searchBtn = QPushButton()
-        self.searchBtn.setIcon(QIcon("searchIcon.svg"))
-        self.searchBtn.setIconSize(QSize(24, 24))
         self.searchBtn.setStyleSheet("border:none; background-color: transparent;")
         self.searchBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
@@ -109,10 +107,14 @@ class QueryBar(QWidget) :
         
         if self.data == "students" :
             frame.setObjectName("studentQueryBar")
+            self.searchBtn.setIcon(QIcon("assets/searchIcon_student.svg"))
         elif self.data == "programs" :
             frame.setObjectName("programQueryBar")
+            self.searchBtn.setIcon(QIcon("assets/searchIcon_program.svg"))
         elif self.data == "colleges" :
             frame.setObjectName("collegeQueryBar")
+            self.searchBtn.setIcon(QIcon("assets/searchIcon_college.svg"))
+        self.searchBtn.setIconSize(QSize(24, 24))
 
         main_layout = QHBoxLayout()
         main_layout.setContentsMargins(0,0,0,0)

@@ -1,5 +1,5 @@
 code,name,college_code
-bscs,bachelors of science in cs,cc
+bscs,bachelors of science in cs,ccs
 bsit,bachelors of science in it,ccs
 bsis,bachelors of science in is,ccs
 bsca,bachelors of science in is,ccs
@@ -9,7 +9,3 @@ bsece,bachelors of science in ece,coe
 bsbio,bachelors of science in bio,csm
 bschem,bachelors of science in chem,csm
 bsmat,bachelors of science in math,none
-bscoc,bachelors of science in mathematics and coral engineering,none
-bscoca,bachelors of science in mathematics and coral engineering,none
-
-

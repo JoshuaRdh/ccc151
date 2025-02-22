@@ -19,7 +19,8 @@ class Lists(QWidget):
         super().__init__()
         self.data = data
         self.frame = QFrame()
-        self.rows = 10
+        self.rows = 1
+        # self.resizeDynamically(self.height())
         self.init_Query = {
             'fetchedList' : self.getList(),
             'filter_Params' : None,
@@ -35,9 +36,9 @@ class Lists(QWidget):
         if (self.data == "students") :
             self.textColor = "#144272"
         elif (self.data == "programs") :
-            self.textColor = "#4c1472"
+            self.textColor = "#a1413f"
         elif (self.data == "colleges") :
-            self.textColor = "#146772"
+            self.textColor = "#477a72"
 
         self.frame.setStyleSheet(f"""
                                  QFrame{{
@@ -54,7 +55,6 @@ class Lists(QWidget):
                                  }}       
                                  
                                  """)
-        # self.frame.setObjectName("listFrame")
         main_layout = QVBoxLayout()
         main_layout.setContentsMargins(0,0,0,0)
         main_layout.addWidget(self.frame)
@@ -70,7 +70,7 @@ class Lists(QWidget):
         self.queriedArr = list(reversed(self.getList())) # init 
 
         self.currentLastPage = math.ceil(len(self.queriedArr)/self.rows)
-        self.pageNav = PageNav(self.currentLastPage, self.renderPage)
+        self.pageNav = PageNav(self.currentLastPage, self.renderPage, self.data)
         
         self.totalCount = len(self.init_Query['fetchedList'])
         self.countLabel = QLabel(f"Total {self.data[0:1].upper()}{self.data[1:]} : {self.totalCount}")
@@ -84,6 +84,7 @@ class Lists(QWidget):
         paginatedArr = getPage(self.queriedArr, self.pageNav.currentPage, self.rows)
         self.renderList(paginatedArr)
         self.setLayout(main_layout)
+
 
     def renderPage(self) :
         paginatedArr = getPage(self.queriedArr, self.pageNav.currentPage, self.rows)
@@ -102,7 +103,6 @@ class Lists(QWidget):
                 self.myLists_Layout.addWidget(Details(obj))
                 addHeader = False
             number = (self.pageNav.currentPage - 1) * self.rows + index + 1
-            # print(index)
             self.myLists_Layout.addWidget(Details(obj, self.data, self.dependencyPanel, self.refactor_rerender, self.dependencyPanel2, number, self.setFocusedIndex, index)) 
         
         # traceback.print_stack()
@@ -176,4 +176,11 @@ class Lists(QWidget):
         # for i in range(self.myLists_Layout.count()):
         #     widget = self.myLists_Layout.itemAt(i).widget()
         #     print(f"Index {i}: {widget} ({type(widget)})")
+
+    def resizeDynamically(self, height) :
+        frame_inertHeight = 375 - 38
+        detailFrame_height = 38
+        self.rows = math.floor((height - frame_inertHeight) / detailFrame_height)
+        self.refactor_rerender()
+
 

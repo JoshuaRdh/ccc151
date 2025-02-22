@@ -18,13 +18,13 @@ from PyQt6.QtGui import QCursor
 class Form(QDialog) :
     def __init__(self, parent, listSection, data, dependencyPanel = None, dependencyPanel2 = None):
         super().__init__(parent)
+        self.setObjectName("formDialog")
         self.parent = parent
         self.setWindowTitle(f"add {data[:-1]}")
         self.setFixedWidth(400)
         self.listSection = listSection 
         self.data = data
         self.form_comboBox = dependencyPanel
-        self.setObjectName("form")
 
         if (self.data == 'students') :
             self.studentUI_init()

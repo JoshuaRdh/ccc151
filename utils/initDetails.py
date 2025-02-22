@@ -146,6 +146,14 @@ def editStudent_init(self, myWidth, height) :
     self.program_code.setCurrentText(self.obj['program_code'])
     self.program_code.setFixedWidth(myWidth)
     self.program_code.setFixedHeight(height)
+    IbeamArr = [self.id_number, self.first_name, self.last_name]
+    for input in IbeamArr :
+        input.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
+    arr = [ self.gender, self.year_level, self.program_code]
+    for input in arr :
+        input.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+    self.setObjectName("studentDetailsEdit")
 
     self.id_number.returnPressed.connect(self.handleSave)
     self.first_name.returnPressed.connect(self.handleSave)
@@ -187,6 +195,7 @@ def editProgram_init(self, height) :
     numberLabel = QLabel(f"{self.number}")
     numberLabel.setFixedWidth(self.numberWidth)
     self.layout.addWidget(numberLabel)
+    self.setObjectName("programDetailsEdit")
 
     self.layout.addWidget(self.code)
     self.layout.addWidget(self.name)
@@ -211,6 +220,7 @@ def editCollege_init(self, height) :
     numberLabel = QLabel(f"{self.number}")
     numberLabel.setFixedWidth(self.numberWidth)
     self.layout.addWidget(numberLabel)
+    self.setObjectName("collegeDetailsEdit")
 
     self.layout.addWidget(self.code)
     self.layout.addWidget(self.name)

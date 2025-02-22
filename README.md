@@ -1,3 +1,3 @@
 # students-data-app
 
-wet and coupled
+ccc 151 project

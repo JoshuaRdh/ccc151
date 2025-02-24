@@ -328,11 +328,11 @@ class Details(QFrame):
 def clear_layout(layout): 
     if layout is not None:
         for i in reversed(range(layout.count())):
-            item = layout.takeAt(i)  # Take the item from the layout
+            item = layout.takeAt(i) 
 
-            if item.widget():  # If it's a widget
+            if item.widget(): 
                 item.widget().deleteLater()
-            elif item.spacerItem():  # If it's a spacer/stretch
-                layout.removeItem(item)  # Remove the stretch
+            elif item.spacerItem():  
+                layout.removeItem(item) 
 
             

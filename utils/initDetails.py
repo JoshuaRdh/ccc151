@@ -1,17 +1,11 @@
 from PyQt6.QtWidgets import (
     QLineEdit,
-    QWidget,
-    QPushButton, 
-    QHBoxLayout,
     QLabel,
     QComboBox,
-    QFrame,
-    QMenu,
-    QTextEdit
     )
 import math
-from PyQt6.QtCore import Qt, QObject, QEvent
-from PyQt6.QtGui import QCursor, QIcon
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QCursor
 from algo import getOptions
 
 def headerUI_init(self) :

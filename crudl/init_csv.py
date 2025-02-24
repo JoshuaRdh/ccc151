@@ -10,4 +10,4 @@ def check_dataFolder() :
         for filename in ["colleges.csv", "programs.csv", "students.csv"]:
             (folderPath / filename).touch()
 
-check_dataFolder()
+# check_dataFolder()

@@ -30,6 +30,7 @@ def formValidated(data, myObj, self, obj) :
             msgbox.setText("id number should be a valid year")
             msgbox.exec()
             return False
+        
         elif (checkDitto.checkStudents(myObj['id_no'].lower()) is True and obj['id_no'].lower() != myObj['id_no'].lower()) :
             msgbox.setWindowTitle("ditto id number")
             msgbox.setText("student with id number already exists")
@@ -92,10 +93,12 @@ def update_formComboBox(data, comboBox) :
         comboBox.blockSignals(False)
 
 def update_filterComboBox(data, comboBox, num = None) : 
-    if data == 'programs' or num == 2:
+    if data == 'programs' or num == 2: # 2 means college_code is edited - update student filter cb
         comboBox.blockSignals(True)
         comboBox.clear()
         comboBox.addItem('no filter')
+        comboBox.addItem('assigned')
+        comboBox.addItem('unassigned')
         comboBox.addItem("-- by College --")
         college_labelIndex = comboBox.count() -1
         comboBox.setItemData(college_labelIndex, False, Qt.ItemDataRole.UserRole -1)
@@ -103,7 +106,6 @@ def update_filterComboBox(data, comboBox, num = None) :
         comboBox.addItem("-- by Program --") 
         program_labelIndex = comboBox.count() - 1
         comboBox.setItemData(program_labelIndex, False, Qt.ItemDataRole.UserRole -1)
-        comboBox.addItem('none')
         comboBox.addItems(getOptions.getPrograms())
         comboBox.blockSignals(False)
 
@@ -111,10 +113,11 @@ def update_filterComboBox(data, comboBox, num = None) :
         comboBox.blockSignals(True)
         comboBox.clear()
         comboBox.addItem('no filter')
+        comboBox.addItem('assigned')
+        comboBox.addItem('unassigned')
         comboBox.addItem("-- by College --")
         college_labelIndex =comboBox.count() -1
         comboBox.setItemData(college_labelIndex, False, Qt.ItemDataRole.UserRole -1)
-        comboBox.addItem('none')
         comboBox.addItems(getOptions.getColleges())
         comboBox.blockSignals(False)
 

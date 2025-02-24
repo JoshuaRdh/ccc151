@@ -52,13 +52,15 @@ class QueryBar(QWidget) :
 
         if (self.data == 'students') :
             self.sortComboBox.blockSignals(True)
-            self.sortComboBox.addItems(["recent", "oldest", "id no.↑", "id no.↓", "last name↑", "last name↓","year level↑", "year level↓"  ])
+            self.sortComboBox.addItems(["recent", "oldest", "id no.↑", "id no.↓", "last name↑", "last name↓","year level↑", "year level↓", "program" ])
             self.sortComboBox.blockSignals(False)
 
             #filterBox
             self.filterComboBox.blockSignals(True)
 
             self.filterComboBox.addItem('no filter')
+            self.filterComboBox.addItem('assigned')
+            self.filterComboBox.addItem('unassigned')
             self.filterComboBox.addItem("-- by College --")
             college_labelIndex = self.filterComboBox.count() -1
             self.filterComboBox.setItemData(college_labelIndex, False, Qt.ItemDataRole.UserRole -1)
@@ -66,7 +68,6 @@ class QueryBar(QWidget) :
             self.filterComboBox.addItem("-- by Program --") 
             program_labelIndex = self.filterComboBox.count() - 1
             self.filterComboBox.setItemData(program_labelIndex, False, Qt.ItemDataRole.UserRole -1)
-            self.filterComboBox.addItem('none')
             self.filterComboBox.addItems(getOptions.getPrograms())
             self.filterComboBox.blockSignals(False)
 
@@ -77,10 +78,11 @@ class QueryBar(QWidget) :
 
             self.filterComboBox.blockSignals(True)
             self.filterComboBox.addItem('no filter')
+            self.filterComboBox.addItem('assigned')
+            self.filterComboBox.addItem('unassigned')
             self.filterComboBox.addItem("-- by College --")
             college_labelIndex = self.filterComboBox.count() -1
             self.filterComboBox.setItemData(college_labelIndex, False, Qt.ItemDataRole.UserRole -1)
-            self.filterComboBox.addItem('none')
             self.filterComboBox.addItems(getOptions.getColleges())
             self.filterComboBox.blockSignals(False)
 

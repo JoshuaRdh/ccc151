@@ -8,11 +8,9 @@ from PyQt6.QtWidgets import (
     QStackedWidget,
     QFrame,
     QLabel,
-    QLayout,
-    QSizePolicy,
     )
 from PyQt6.QtCore import Qt, QPropertyAnimation, QPoint, QEasingCurve
-from PyQt6.QtGui import QKeySequence, QShortcut, QCursor, QMouseEvent
+from PyQt6.QtGui import QKeySequence, QShortcut, QCursor
 import threading
 import sys
 import math
@@ -81,7 +79,6 @@ class QWindow(QMainWindow) :
 
         main_layout.addWidget(switchPanel)
         main_layout.addWidget(self.myPanels)
-        # main_layout.addStretch()        
 
         centralWidget = QWidget(self)
 
@@ -154,8 +151,6 @@ class QWindow(QMainWindow) :
         self.programPanel.myList.resizeDynamically(new_size.height())
         self.collegePanel.myList.resizeDynamically(new_size.height())
         super().resizeEvent(event)
-
-
 
 if __name__ == "__main__":
     app = QApplication([])

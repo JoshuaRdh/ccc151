@@ -19,7 +19,7 @@ class Lists(QWidget):
         super().__init__()
         self.data = data
         self.frame = QFrame()
-        self.rows = 1
+        self.rows = 5
         # self.resizeDynamically(self.height())
         self.init_Query = {
             'fetchedList' : self.getList(),
@@ -108,11 +108,13 @@ class Lists(QWidget):
         # traceback.print_stack()
 
     def goFocus(self, index):
+        print('goFocus', index)
         QTimer.singleShot(0, lambda: self.myLists_Layout.itemAt(index).widget().setFocus())
         
     
     def setFocusedIndex(self, indexToGo) :
         numberToGo = (self.pageNav.currentPage - 1) * self.rows + indexToGo
+        print(numberToGo, self.totalCount)
         if numberToGo > self.totalCount :
             self.focusedIndex = 1
         elif indexToGo == 0 :
@@ -123,7 +125,7 @@ class Lists(QWidget):
                 # is not first page
                 self.pageNav.handleNavClicked('<')
                 self.focusedIndex = self.rows
-        elif indexToGo < self.rows :
+        elif indexToGo <= self.rows :
             self.focusedIndex = indexToGo
         else : # is beyond rows
             if self.pageNav.currentPage == self.pageNav.currentLastPage :
@@ -153,6 +155,7 @@ class Lists(QWidget):
         self.renderList(paginatedArr)
         self.pageNav.updateNav(self.queriedArr, self.rows)
         total = len(self.init_Query['fetchedList'])
+        self.totalCount = total
         self.countLabel.setText(f"Total {self.data} : {total}")
 
     def getList(self): 
@@ -160,17 +163,13 @@ class Lists(QWidget):
             reader = csv.DictReader(csvfile)
             return list(reader)
 
-    def clear_layout(self, layout): # i hate you
+    def clear_layout(self, layout):
         if layout is not None:
             for i in range(layout.count()):
-                # print(layout.count())
                 item = layout.itemAt(i)
-                widget = item.widget()  # Get the widget in the layout
-                if widget: #this widget is Details
-                    # print(widget.layout.count()) do this later
-                    # self.clear_layout(widget.layout)
-                    # print(widget.layout.count())
-                    widget.deleteLater()  # Schedule the widget for deletion
+                widget = item.widget() 
+                if widget: 
+                    widget.deleteLater()
         # gc.collect()
         # print(gc.get_objects())
         # for i in range(self.myLists_Layout.count()):

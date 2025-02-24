@@ -131,8 +131,8 @@ class Form(QDialog) :
         if (self.data == 'students') : # considers validation
             objToAdd = {
                 'id_no':self.id_number.text(),
-                'first_name': self.first_name.text().lower(),
-                'last_name': self.last_name.text().lower(),
+                'first_name': self.first_name.text().lower().strip(),
+                'last_name': self.last_name.text().lower().strip(),
                 'year_level': self.year_level.currentText(),
                 'gender': self.gender.currentText(),
                 'program_code': self.program_code.currentText()
@@ -144,8 +144,8 @@ class Form(QDialog) :
 
         elif (self.data == 'programs') :
             objToAdd = {
-                'code' : self.code.text().lower(),
-                'name' : self.name.text().lower(),
+                'code' : self.code.text().lower().strip(),
+                'name' : self.name.text().lower().strip(),
                 'college_code' : self.college_code.currentText(),
             }
             if formValidated(self.data, objToAdd,self, None) :
@@ -156,8 +156,8 @@ class Form(QDialog) :
                
         elif (self.data == 'colleges') :
             objToAdd = {
-                'code' : self.code.text().lower(),
-                'name' : self.name.text().lower(),
+                'code' : self.code.text().lower().strip(),
+                'name' : self.name.text().lower().strip(),
             }
             if formValidated(self.data, objToAdd,self, None) :
                 addCollege(objToAdd)

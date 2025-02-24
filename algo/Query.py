@@ -20,10 +20,17 @@ def refactor_Filter(arr, filter_Params, searchBy, keyword, sort) :
     index = filter_Params['index']
     programLabel_index = filter_Params['programLabel_index']
 
+    if filterBy == 'unassigned' :
+        filterBy = 'none'
+
     if data == 'students' :
-        category = 'program' if index > programLabel_index else 'college'
-        
-        if (category == 'program'):
+        category = 'program' if index > programLabel_index or filterBy == 'none' else 'college'
+
+        if filterBy == 'assigned' :
+            for obj in arr :
+                    if obj['program_code'] != 'none' :
+                        resultsArr.append(obj) 
+        elif (category == 'program'):
             for obj in arr :
                 if obj['program_code'] == filterBy :
                     resultsArr.append(obj)
@@ -33,10 +40,14 @@ def refactor_Filter(arr, filter_Params, searchBy, keyword, sort) :
                 if obj['program_code'] in programs :
                     resultsArr.append(obj)
     elif data == 'programs' :
-
-        for obj in arr :
-            if obj['college_code'] == filterBy :
-                resultsArr.append(obj)
+        if filterBy == 'assigned' :
+            for obj in arr :
+                    if obj['college_code'] != 'none' :
+                        resultsArr.append(obj)
+        else :
+            for obj in arr :
+                if obj['college_code'] == filterBy :
+                    resultsArr.append(obj)
 
     return refactor_Search(resultsArr, searchBy, keyword, sort)
 
@@ -80,6 +91,9 @@ def Sort(arr, sortBy) :
         return mergeSort(arr, 'v', 'year_level')
     elif (sortBy == 'college') :
         return mergeSort(arr, 'v', 'college_code')
+    elif (sortBy == 'program') :
+        return mergeSort(arr, 'v', 'program_code')
+
 
 def mergeSort(arr, order, code) : 
     if len(arr) <= 1 : return arr

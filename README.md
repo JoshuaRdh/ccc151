@@ -6,6 +6,8 @@ developed using pyqt6
 
 to download:
 
+download or clone this repo, then
+
 1. create environment
 ```python -m venv env```
 

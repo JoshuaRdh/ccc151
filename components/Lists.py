@@ -108,7 +108,6 @@ class Lists(QWidget):
         # traceback.print_stack()
 
     def goFocus(self, index):
-        print('goFocus', index)
         QTimer.singleShot(0, lambda: self.myLists_Layout.itemAt(index).widget().setFocus())
         
     

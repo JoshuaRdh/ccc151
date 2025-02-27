@@ -153,9 +153,8 @@ class QueryBar(QWidget) :
 
         self.defaultQuery['keyword'] = keyword
 
-        if (self.data == 'students') :
-            searchBy = self.searchByComboBox.currentText()
-            self.defaultQuery['searchBy'] = searchBy
+        searchBy = self.searchByComboBox.currentText()
+        self.defaultQuery['searchBy'] = searchBy
 
         self.myList.refactor_rerender('search', self.defaultQuery)
 

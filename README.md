@@ -4,7 +4,7 @@ ccc 151 project
 
 developed using pyqt6
 
-to download:
+setting up:
 
 download or clone this repo, then
 
@@ -17,3 +17,12 @@ download or clone this repo, then
 
 3. install pyqt6
 ```pip install pyqt6```
+
+to run :
+
+run main.py
+or 
+```python main.py```
+or
+```python -m main```
+

@@ -28,7 +28,6 @@ def headerUI_init(self) :
             label.setFixedWidth(myWidth)
 
         self.layout.addWidget(label)
-    # self.setLayout(self.layout)
     self.layout.addStretch()
 
 
@@ -42,7 +41,6 @@ def studentUI_init(self) :
     pclabel = QLabel(self.obj['program_code'])
     arr = [idlabel, fnlabel, lslabel, glabel, ylabel, pclabel]
     for label in arr :
-        label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         label.installEventFilter(self)
 
     idlabel.setFixedWidth(myWidth)
@@ -63,9 +61,6 @@ def studentUI_init(self) :
     self.layout.addWidget(ylabel)
     self.layout.addWidget(pclabel)
 
-
-    # self.setLayout(self.layout)
-
 def programUI_init(self) :
     myWidth = math.floor((640-400) / 2)
     clabel = QLabel(self.obj['code'])
@@ -73,7 +68,6 @@ def programUI_init(self) :
     cclabel = QLabel(self.obj['college_code'])
     arr = [clabel, nlabel, cclabel]
     for label in arr:
-        label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         label.installEventFilter(self)
 
     clabel.setFixedWidth(myWidth)
@@ -87,7 +81,6 @@ def programUI_init(self) :
     self.layout.addWidget(clabel)
     self.layout.addWidget(nlabel)
     self.layout.addWidget(cclabel)
-    # self.setLayout(self.layout)
 
 def collegeUI_init(self) :
     myWidth = math.floor((640-400) / 2)
@@ -95,7 +88,6 @@ def collegeUI_init(self) :
     nlabel = QLabel(self.obj['name'])
     arr = [clabel, nlabel]
     for label in arr:
-        label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         label.installEventFilter(self)
 
     clabel.setFixedWidth(myWidth)
@@ -152,8 +144,6 @@ def editStudent_init(self, myWidth, height) :
     self.id_number.returnPressed.connect(self.handleSave)
     self.first_name.returnPressed.connect(self.handleSave)
     self.last_name.returnPressed.connect(self.handleSave)
-
-
 
     numberLabel = QLabel(f"{self.number}")
     numberLabel.setFixedWidth(self.numberWidth)

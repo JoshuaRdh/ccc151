@@ -4,6 +4,8 @@ from PyQt6.QtWidgets import (
     QFrame,
     QMenu,
     QMessageBox,
+    QLabel,
+    QLineEdit,
     )
 import math
 from PyQt6.QtCore import Qt, QEvent
@@ -20,7 +22,7 @@ class Details(QFrame):
         super().__init__()
 
         self.number = number
-        self.numberWidth = 40
+        self.numberWidth = 40 # what's this - used in initDetails, its row number
 
         self.setFocusedIndex = setFocusedIndex
         self.index = index
@@ -49,7 +51,7 @@ class Details(QFrame):
         elif (self.data == "colleges") :
             self.highlightColor = "#5ea398"
             self.textColor = "#477a72"
-            
+
         self.frameStyles = """
             QFrame{
                 padding-top: 4.5px;
@@ -64,8 +66,6 @@ class Details(QFrame):
                 border: none;
                 border-bottom: 0.5px solid #144272;
             }"""
-        if data != 'header' :
-            self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
         self.setStyleSheet(self.frameStyles)
         
@@ -77,6 +77,18 @@ class Details(QFrame):
 
         self.setLayout(self.layout)
         self.self_init()
+
+        if data != 'header' :
+            self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+
+            self.labelHighlight = QLabel(self)
+            self.labelHighlight.setObjectName("labelHighlight")
+            self.labelHighlight.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+            self.labelHighlight.installEventFilter(self)
+            self.labelHighlight.setStyleSheet(f"color:{self.textColor};background-color:white; border:1px solid {self.highlightColor}")
+            self.labelHighlight.hide()
+            self.labelHighlight.raise_()
+
 
     def focusInEvent(self, event):
         focused_frameStyles = f"""
@@ -110,6 +122,20 @@ class Details(QFrame):
             self.focusInEvent(event)
         elif event.type() == QEvent.Type.FocusOut :
             self.focusOutEvent(event)
+            if  obj.objectName() == "labelHighlight" :
+                self.labelHighlight.hide()
+        elif event.type() == QEvent.Type.MouseButtonDblClick :
+            if obj is not self.labelHighlight : # to avoid call when it itself is dblclicked
+                
+                global_pos = obj.mapToGlobal(obj.rect().topLeft())
+                selfpos = self.mapToGlobal(obj.rect().topLeft())
+                self.labelHighlight.setText(obj.text())
+                self.labelHighlight.adjustSize()
+                self.labelHighlight.show()
+                self.labelHighlight.setFocus()
+ 
+                self.labelHighlight.move(global_pos.x() - selfpos.x(),5)
+
         return super().eventFilter(obj, event)
 
 
@@ -269,6 +295,7 @@ class Details(QFrame):
     def handleCancel(self) :
         clear_layout(self.layout)
         self.self_init()
+        self.labelHighlight.raise_()
 
     def hanDel(self) :
         msgbox = QMessageBox(self)

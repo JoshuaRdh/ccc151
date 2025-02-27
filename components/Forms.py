@@ -61,7 +61,7 @@ class Form(QDialog) :
         form.addRow("year level:", self.year_level)
         form.addRow("gender:", self.gender)
         form.addRow("program code:", self.program_code)
-        button = QPushButton('helloStudent')
+        button = QPushButton('Add Student')
 
         button.clicked.connect(self.handleAdd)
 
@@ -90,7 +90,7 @@ class Form(QDialog) :
         form.addRow("code:", self.code)
         form.addRow("name:", self.name)
         form.addRow("college code:", self.college_code)
-        button = QPushButton('helloProgram')
+        button = QPushButton('Add Program')
         button.clicked.connect(self.handleAdd)
         ibeamArr = [self.code, self.name]
         for input in ibeamArr :
@@ -112,7 +112,7 @@ class Form(QDialog) :
 
         form.addRow("code:", self.code)
         form.addRow("name:", self.name)
-        button = QPushButton('helloCollege')
+        button = QPushButton('Add College')
         button.clicked.connect(self.handleAdd)
         self.code.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
         self.name.setCursor(QCursor(Qt.CursorShape.IBeamCursor))

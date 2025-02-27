@@ -144,7 +144,7 @@ class QWindow(QMainWindow) :
         self.anim.start()
 
     def resizeEvent(self, event):
-        new_size = event.size()  # Get new window size
+        new_size = event.size()
         if self.oldHeight == new_size.height() : return
         self.oldHeight = new_size.height()
         self.studentPanel.myList.resizeDynamically(new_size.height())

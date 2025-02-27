@@ -24,13 +24,7 @@ class QueryBar(QWidget) :
             "keyword" : "",
             "sort" : "recent"
         }
-        frame_layout = QHBoxLayout()
-
-        if (self.data == 'students') :
-            self.searchByLabel = QLabel('search by:')
-            self.searchByComboBox = QComboBox()
-            self.searchByComboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            self.searchByComboBox.addItems(['everywhere','id_no', 'first_name', 'last_name'])
+        frame_layout = QHBoxLayout()          
 
         self.searchBar = QLineEdit()
         self.searchBar.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
@@ -44,6 +38,11 @@ class QueryBar(QWidget) :
         self.sortComboBox = QComboBox()
         self.sortComboBox.currentIndexChanged.connect(self.refactor_handleSort)
         self.sortComboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+        self.searchByLabel = QLabel('search by:')
+        self.searchByComboBox = QComboBox()
+        self.searchByComboBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
         if (self.data != 'colleges') :
             self.filterLabel = QLabel('Filter: ')
             self.filterComboBox = QComboBox()
@@ -71,6 +70,9 @@ class QueryBar(QWidget) :
             self.filterComboBox.addItems(getOptions.getPrograms())
             self.filterComboBox.blockSignals(False)
 
+
+            self.searchByComboBox.addItems(['everywhere','id_no', 'first_name', 'last_name', 'gender', 'year_level', 'program_code'])
+
         elif (self.data == 'programs') :
             self.sortComboBox.blockSignals(True)
             self.sortComboBox.addItems(["recent", "oldest","a-z", "z-a", "college" ])
@@ -86,14 +88,17 @@ class QueryBar(QWidget) :
             self.filterComboBox.addItems(getOptions.getColleges())
             self.filterComboBox.blockSignals(False)
 
+            self.searchByComboBox.addItems(['everywhere', 'code','name' ,'college_code'])
+
         elif (self.data == 'colleges') :
             self.sortComboBox.blockSignals(True)
             self.sortComboBox.addItems(["recent", "oldest","a-z", "z-a" ])
             self.sortComboBox.blockSignals(False)
+            self.searchByComboBox.addItems(['everywhere', 'code','name'])
 
-        if (self.data == 'students') : # students only has searchby
-            frame_layout.addWidget(self.searchByLabel)
-            frame_layout.addWidget(self.searchByComboBox)
+
+        frame_layout.addWidget(self.searchByLabel)
+        frame_layout.addWidget(self.searchByComboBox)
 
         frame_layout.addWidget(self.searchBar)
         frame_layout.addWidget(self.searchBtn)

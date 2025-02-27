@@ -1,7 +1,7 @@
 import math
 from algo.getOptions import getProgramsOfColleges
 
-def refactor_Query( queryObj) :
+def refactor_Query( queryObj) : # filter -> search -> sort
     arr = queryObj['fetchedList']
     filter_Params = queryObj['filter_Params']
     searchBy = queryObj['searchedBy']

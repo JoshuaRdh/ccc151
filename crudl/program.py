@@ -4,7 +4,7 @@ from crudl.student import editStudentProgCode
 example = {'code':'bscs','name': 'bachelors of science in computer science', 'college_code': 'ccs'}
 
 def writeProgramData(programList = {}) :
-    with open("data/programs.csv", 'w') as csvfile:
+    with open("data/programs.csv", 'w', newline='') as csvfile:
         fieldNames = ['code', 'name', 'college_code']
         writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
         writer.writeheader()
@@ -12,7 +12,7 @@ def writeProgramData(programList = {}) :
 
 
 def addProgram(newProgram) : 
-    with open('data/programs.csv', 'r') as csvfile:
+    with open('data/programs.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         programList = list(reader)
         programList.append(newProgram)
@@ -22,7 +22,7 @@ def addProgram(newProgram) :
 
 def editProgram(thisCode, obj) :
     editedList = []
-    with open('data/programs.csv', 'r') as csvfile:
+    with open('data/programs.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         ProgramList = list(reader)
         for program in ProgramList :
@@ -38,7 +38,7 @@ def editProgram(thisCode, obj) :
 
 def delProgram(code) :
     editedList = []
-    with open('data/programs.csv', 'r') as csvfile:
+    with open('data/programs.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         ProgramList = list(reader)
         for program in ProgramList :
@@ -50,7 +50,7 @@ def delProgram(code) :
 
 def editProgramCollege_Code(code, change) :
     editedList = []
-    with open('data/programs.csv', 'r') as csvfile:
+    with open('data/programs.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         programList = list(reader)
         for program in programList :

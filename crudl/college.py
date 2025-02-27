@@ -4,7 +4,7 @@ from crudl.program import editProgramCollege_Code
 # example = {'code':'ccs','name': 'college of computer studies'}
 
 def writeCollegeData(collegeList) :
-    with open("data/colleges.csv", 'w') as csvfile:
+    with open("data/colleges.csv", 'w', newline='') as csvfile:
         fieldNames = ['code', 'name']
         writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
         writer.writeheader()
@@ -12,7 +12,7 @@ def writeCollegeData(collegeList) :
 
 
 def addCollege(newCollege) : 
-    with open('data/colleges.csv', 'r') as csvfile:
+    with open('data/colleges.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         collegeList = list(reader)
         collegeList.append(newCollege)
@@ -22,7 +22,7 @@ def addCollege(newCollege) :
     
 def editCollege(thisCode, obj) :
     editedList = []
-    with open('data/colleges.csv', 'r') as csvfile:
+    with open('data/colleges.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         collegeList = list(reader)
         for college in collegeList :
@@ -37,7 +37,7 @@ def editCollege(thisCode, obj) :
 
 def delCollege(code) :
     editedList = []
-    with open('data/colleges.csv', 'r') as csvfile:
+    with open('data/colleges.csv', 'r', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         collegeList = list(reader)
         for college in collegeList :

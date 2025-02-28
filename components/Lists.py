@@ -73,6 +73,8 @@ class Lists(QWidget):
         self.pageNav = PageNav(self.currentLastPage, self.renderPage, self.data)
         
         self.totalCount = len(self.init_Query['fetchedList'])
+        self.queriedTotal = self.totalCount
+
         self.countLabel = QLabel(f"Total {self.data[0:1].upper()}{self.data[1:]} : {self.totalCount}")
         self.countLabel.setStyleSheet("margin-left: 3px; margin-bottom: 5px; font-weight: 550")
 
@@ -113,13 +115,13 @@ class Lists(QWidget):
     
     def setFocusedIndex(self, indexToGo) :
         numberToGo = (self.pageNav.currentPage - 1) * self.rows + indexToGo
-        print(numberToGo, self.totalCount)
-        if numberToGo > self.totalCount :
+        # print(numberToGo, self.queriedTotal)
+        if numberToGo > self.queriedTotal :
             self.focusedIndex = 1
         elif indexToGo == 0 :
             if self.pageNav.currentPage == 1 :
                 # is first page
-                self.focusedIndex = min(self.totalCount, self.rows)
+                self.focusedIndex = min(self.queriedTotal, self.rows)
             else :
                 # is not first page
                 self.pageNav.handleNavClicked('<')
@@ -150,11 +152,13 @@ class Lists(QWidget):
         self.clear_layout(self.myLists_Layout)
         self.queriedArr = Query.refactor_Query(self.init_Query) 
 
+        self.pageNav.updateNav(self.queriedArr, self.rows)
         paginatedArr = getPage(self.queriedArr, self.pageNav.currentPage, self.rows)
         self.renderList(paginatedArr)
-        self.pageNav.updateNav(self.queriedArr, self.rows)
         total = len(self.init_Query['fetchedList'])
         self.totalCount = total
+        self.queriedTotal = len(self.queriedArr)
+
         self.countLabel.setText(f"Total {self.data} : {total}")
 
     def getList(self): 
@@ -180,5 +184,4 @@ class Lists(QWidget):
         detailFrame_height = 38
         self.rows = math.floor((height - frame_inertHeight) / detailFrame_height)
         self.refactor_rerender()
-
 

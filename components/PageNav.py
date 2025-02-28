@@ -120,16 +120,16 @@ class PageNav(QFrame) :
     
     def updateNav(self, queriedArr, rows) :
         self.currentLastPage = max(1, math.ceil(len(queriedArr) / rows))
+        self.currentPage = min(self.currentPage, self.currentLastPage)
 
         if self.currentLastPage > self.currentPage :
             self.lineNav.show()
             self.rightNav.show()
-        elif self.currentLastPage < self.currentPage :
-            self.currentPage = self.currentLastPage
-            self.lineNav.setText(f"{self.currentPage}")
-            self.renderPage()
         elif self.currentLastPage == 1 :
+            self.lineNav.setText(f"{self.currentPage}")
+            self.leftNav.hide()
             self.rightNav.hide()
             self.lineNav.hide()
-        else: # when currpage = curr last
+        else: # when currpage = curr last and is not 1
+            self.lineNav.setText(f"{self.currentPage}")
             self.rightNav.hide()
